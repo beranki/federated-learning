@@ -1,0 +1,1023 @@
+[2024-08-06 20:05:19,434][flwr][INFO] - Starting Flower simulation, config: num_rounds=10, no round_timeout
+[2024-08-06 20:05:29,631][flwr][INFO] - Flower VCE: Ray initialized with resources: {'node:__internal_head__': 1.0, 'node:127.0.0.1': 1.0, 'object_store_memory': 1485584793.0, 'CPU': 16.0, 'memory': 2971169588.0}
+[2024-08-06 20:05:29,632][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-08-06 20:05:29,632][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 2, 'num_gpus': 0}
+[2024-08-06 20:05:29,657][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 8 actors
+[2024-08-06 20:05:29,659][flwr][INFO] - [INIT]
+[2024-08-06 20:05:29,663][flwr][INFO] - Requesting initial parameters from one random client
+[2024-08-06 20:05:38,719][flwr][INFO] - Received initial parameters from one random client
+[2024-08-06 20:05:38,720][flwr][INFO] - Evaluating initial global parameters
+[2024-08-06 20:05:48,346][flwr][INFO] - initial parameters (loss, other metrics): 0.6931471805599453, {'accuracy': 0.098, 'precision': 0.009604000000000001, 'recall': 0.098, 'f1': 0.017493624772313296, 'confusion_matrix': array([[ 980,    0,    0,    0,    0,    0,    0,    0,    0,    0],
+       [1135,    0,    0,    0,    0,    0,    0,    0,    0,    0],
+       [1032,    0,    0,    0,    0,    0,    0,    0,    0,    0],
+       [1010,    0,    0,    0,    0,    0,    0,    0,    0,    0],
+       [ 982,    0,    0,    0,    0,    0,    0,    0,    0,    0],
+       [ 892,    0,    0,    0,    0,    0,    0,    0,    0,    0],
+       [ 958,    0,    0,    0,    0,    0,    0,    0,    0,    0],
+       [1028,    0,    0,    0,    0,    0,    0,    0,    0,    0],
+       [ 974,    0,    0,    0,    0,    0,    0,    0,    0,    0],
+       [1009,    0,    0,    0,    0,    0,    0,    0,    0,    0]],
+      dtype=int64)}
+[2024-08-06 20:05:48,353][flwr][INFO] - 
+[2024-08-06 20:05:48,354][flwr][INFO] - [ROUND 1]
+[2024-08-06 20:05:48,356][flwr][INFO] - configure_fit: strategy sampled 10 clients (out of 100)
+[2024-08-06 20:05:49,274][flwr][ERROR] - Traceback (most recent call last):
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+                                         ^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 2659, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+
+[2024-08-06 20:05:49,299][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+[2024-08-06 20:05:49,498][flwr][ERROR] - Traceback (most recent call last):
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+                                         ^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 2659, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+
+[2024-08-06 20:05:49,519][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+[2024-08-06 20:05:49,557][flwr][ERROR] - Traceback (most recent call last):
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+                                         ^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 2659, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+
+[2024-08-06 20:05:49,577][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=29720, ip=127.0.0.1, actor_id=f7b925355022709fe96775de01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001D48A59A6F0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+[2024-08-06 20:05:57,922][flwr][ERROR] - Traceback (most recent call last):
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+                                         ^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 2659, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=12728, ip=127.0.0.1, actor_id=c01fb99c76430c7f474c121101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001FAA2DCB9E0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12728, ip=127.0.0.1, actor_id=c01fb99c76430c7f474c121101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001FAA2DCB9E0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+
+[2024-08-06 20:05:57,946][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=12728, ip=127.0.0.1, actor_id=c01fb99c76430c7f474c121101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001FAA2DCB9E0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=12728, ip=127.0.0.1, actor_id=c01fb99c76430c7f474c121101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001FAA2DCB9E0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+[2024-08-06 20:05:58,335][flwr][ERROR] - Traceback (most recent call last):
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+                                         ^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 2659, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=13512, ip=127.0.0.1, actor_id=4ef2e44df6408cb5910d38ce01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x00000294C13BB7A0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13512, ip=127.0.0.1, actor_id=4ef2e44df6408cb5910d38ce01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x00000294C13BB7A0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+
+[2024-08-06 20:05:58,354][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=13512, ip=127.0.0.1, actor_id=4ef2e44df6408cb5910d38ce01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x00000294C13BB7A0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=13512, ip=127.0.0.1, actor_id=4ef2e44df6408cb5910d38ce01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x00000294C13BB7A0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+[2024-08-06 20:05:58,400][flwr][ERROR] - Traceback (most recent call last):
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+                                         ^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 2659, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=24988, ip=127.0.0.1, actor_id=9186727f002b8c46afbe65bb01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001CB0DDFA750>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=24988, ip=127.0.0.1, actor_id=9186727f002b8c46afbe65bb01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001CB0DDFA750>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+
+[2024-08-06 20:05:58,422][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=24988, ip=127.0.0.1, actor_id=9186727f002b8c46afbe65bb01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001CB0DDFA750>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=24988, ip=127.0.0.1, actor_id=9186727f002b8c46afbe65bb01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001CB0DDFA750>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+[2024-08-06 20:05:58,533][flwr][ERROR] - Traceback (most recent call last):
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+                                         ^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 2659, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=10544, ip=127.0.0.1, actor_id=cf02ec0229810eac32b4d1ce01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001900048F830>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10544, ip=127.0.0.1, actor_id=cf02ec0229810eac32b4d1ce01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001900048F830>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+
+[2024-08-06 20:05:58,552][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=10544, ip=127.0.0.1, actor_id=cf02ec0229810eac32b4d1ce01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001900048F830>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=10544, ip=127.0.0.1, actor_id=cf02ec0229810eac32b4d1ce01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001900048F830>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+[2024-08-06 20:05:58,609][flwr][ERROR] - Traceback (most recent call last):
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+                                         ^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 2659, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=23176, ip=127.0.0.1, actor_id=25e9514ce85638f2245c7cc101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x00000209B393A840>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=23176, ip=127.0.0.1, actor_id=25e9514ce85638f2245c7cc101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x00000209B393A840>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+
+[2024-08-06 20:05:58,631][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=23176, ip=127.0.0.1, actor_id=25e9514ce85638f2245c7cc101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x00000209B393A840>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=23176, ip=127.0.0.1, actor_id=25e9514ce85638f2245c7cc101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x00000209B393A840>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+[2024-08-06 20:05:58,849][flwr][ERROR] - Traceback (most recent call last):
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+                                         ^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 2659, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=24996, ip=127.0.0.1, actor_id=3544a0583db0de94db17543b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x0000028A6F57B8C0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=24996, ip=127.0.0.1, actor_id=3544a0583db0de94db17543b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x0000028A6F57B8C0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+
+[2024-08-06 20:05:58,868][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=24996, ip=127.0.0.1, actor_id=3544a0583db0de94db17543b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x0000028A6F57B8C0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=24996, ip=127.0.0.1, actor_id=3544a0583db0de94db17543b01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x0000028A6F57B8C0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+[2024-08-06 20:05:58,973][flwr][ERROR] - Traceback (most recent call last):
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+                                         ^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 2659, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=7500, ip=127.0.0.1, actor_id=233bebf8a9fdd826a96376a101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001894D8FBBF0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=7500, ip=127.0.0.1, actor_id=233bebf8a9fdd826a96376a101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001894D8FBBF0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
+
+[2024-08-06 20:05:58,985][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=7500, ip=127.0.0.1, actor_id=233bebf8a9fdd826a96376a101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001894D8FBBF0>)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 143, in __call__
+    return self._call(message, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\message_handler\message_handler.py", line 129, in handle_legacy_message_from_msgtype
+    fit_res = maybe_call_fit(
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\client.py", line 234, in maybe_call_fit
+    return client.fit(fit_ins)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\client\numpy_client.py", line 238, in _fit
+    results = self.numpy_client.fit(parameters, ins.config)  # type: ignore
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\ProfStampFederatedLearning\client.py", line 127, in fit
+    penalty = config["penalty"]
+              ~~~~~~^^^^^^^^^^^
+KeyError: 'penalty'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=7500, ip=127.0.0.1, actor_id=233bebf8a9fdd826a96376a101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x000001894D8FBBF0>)
+  File "python\ray\_raylet.pyx", line 1895, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1996, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1901, in ray._raylet.execute_task
+  File "python\ray\_raylet.pyx", line 1842, in ray._raylet.execute_task.function_executor
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\_private\function_manager.py", line 691, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\ray\util\tracing\tracing_helper.py", line 467, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bharg\OneDrive\Documents\GitHub\federated-ml\.conda\Lib\site-packages\flwr\simulation\ray_transport\ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: 'penalty'
